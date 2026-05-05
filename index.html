@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Node.js App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #38bdf8;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: none;
+      background: #38bdf8;
+      color: black;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Node.js App</h1>
+
+  <div class="card">
+    <p id="message">Click below to check API</p>
+    <button onclick="loadData()">Check Health</button>
+  </div>
+
+  <script>
+    async function loadData() {
+      const res = await fetch('/health');
+      const data = await res.json();
+      document.getElementById("message").innerText =
+        "Status: " + data.status + " | Host: " + data.hostname;
+    }
+  </script>
+
+</body>
+</html>
