@@ -17,6 +17,7 @@ phases:
     commands:
       - echo Building the application...
       - echo Build started on `date`
+      - grep -Fq "Congratulation" index.html
 
   post_build:
     commands:
