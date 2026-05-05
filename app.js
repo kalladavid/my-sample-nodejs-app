@@ -1,30 +1,23 @@
 const express = require("express");
-const os = require("os");
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
 
-// Home route
-app.get("/", (req, res) => {
-  res.send("🚀 Node.js App is Running Successfully!");
-});
+// Serve static files
+app.use(express.static(__dirname));
 
-// Health check (important for DevOps)
+// Health API
 app.get("/health", (req, res) => {
   res.json({
     status: "UP",
-    hostname: os.hostname(),
-    uptime: process.uptime()
+    hostname: require("os").hostname()
   });
 });
 
-// Info route
-app.get("/info", (req, res) => {
-  res.json({
-    app: "Node.js Sample App",
-    version: "1.0.0",
-    environment: process.env.NODE_ENV || "development"
-  });
+// Serve HTML
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(PORT, () => {
