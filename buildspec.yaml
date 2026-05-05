@@ -17,7 +17,7 @@ phases:
     commands:
       - echo Building the application...
       - echo Build started on `date`
-      - grep -Fq "Node js App" index.html
+      - grep -Fq "Node.js App" index.html
 
   post_build:
     commands:
