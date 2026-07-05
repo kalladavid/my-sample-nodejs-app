@@ -1,0 +1,57 @@
+# System files
+NTUSER.DAT*
+ntuser.dat*
+ntuser.ini
+*.TM.blf
+*.regtrans-ms
+
+# Large / sensitive user dirs
+AppData/
+.aws/
+.ssh/
+.venv/
+venv/
+__pycache__/
+*.log
+*.deb
+*.zip
+
+# IDE / tool config
+.vscode/
+.vscode-shared/
+.vs-kubernetes/
+.copilot/
+.minikube/
+.expo/
+.claude/
+.talisman/
+.talismanrc
+.vim/
+.viminfo
+.local/
+.chocolatey/
+
+# Node
+node_modules/
+.expo/
+dist/
+build/
+
+# Misc personal dirs
+Contacts/
+Favorites/
+Links/
+Music/
+Pictures/
+Videos/
+Searches/
+Saved Games/
+IntelGraphicsProfiles/
+Calculator/
+Documents/
+Desktop/
+OneDrive/
+Devops*/
+sdlc-automation-agent/
+Daveedu/
+aws/
