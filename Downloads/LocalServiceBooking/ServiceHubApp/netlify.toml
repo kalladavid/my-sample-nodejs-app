@@ -1,0 +1,13 @@
+[build]
+  base    = "Downloads/LocalServiceBooking/ServiceHubApp"
+  command = "npx expo export --platform web"
+  publish = "Downloads/LocalServiceBooking/ServiceHubApp/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA routing — send all paths to index.html
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200

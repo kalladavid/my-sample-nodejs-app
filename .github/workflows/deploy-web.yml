@@ -1,0 +1,42 @@
+name: Deploy ServiceHub Web Portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Downloads/LocalServiceBooking/ServiceHubApp/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Downloads/LocalServiceBooking/ServiceHubApp/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Downloads/LocalServiceBooking/ServiceHubApp
+        run: npm ci
+
+      - name: Build web
+        working-directory: Downloads/LocalServiceBooking/ServiceHubApp
+        run: npx expo export --platform web
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: Downloads/LocalServiceBooking/ServiceHubApp/dist
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy ${{ github.sha }} — ${{ github.event.head_commit.message }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
